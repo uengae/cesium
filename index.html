@@ -10,8 +10,19 @@
   <div id="cesiumContainer"></div>
   <script>
     // Get your token from https://cesium.com/ion/tokens
-    Cesium.Ion.defaultAccessToken = 'your_token_here';
-    const viewer = new Cesium.Viewer('cesiumContainer');
+    Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI3YmNlM2FmZi05YWY1LTQwM2YtOTQ0My03NWM4OTQwNWFjZjAiLCJpZCI6MTA0OTIyLCJpYXQiOjE2NjA2NTY3NjJ9.pbOmLZCDIDp65BLxDS1mAe9BEI4-QX3wi_oAN6YKhCs';
+    // Keep your Cesium.Ion.defaultAccessToken = 'your_token_here' line above. 
+// STEP 2 CODE
+// Initialize the viewer with Cesium World Terrain.
+const viewer = new Cesium.Viewer('cesiumContainer', {
+  terrainProvider: Cesium.createWorldTerrain()
+});
+// Add Cesium OSM Buildings.
+const buildingsTileset = viewer.scene.primitives.add(Cesium.createOsmBuildings());
+// Fly the camera to Denver, Colorado at the given longitude, latitude, and height.
+viewer.camera.flyTo({
+  destination: Cesium.Cartesian3.fromDegrees(-104.9965, 39.74248, 4000)
+});
   </script>
 </body>
 </html>
